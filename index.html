@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probióticos — Bioquímica EIA 2026</title>
+  <style>
+    :root {
+      --bg:      #1A0A2E;
+      --primary: #7B2FBE;
+      --accent:  #FF6B9D;
+      --text:    #F8F0FF;
+      --card:    #2D1B4E;
+      --border:  rgba(123,47,190,0.35);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top:0; width:100%; z-index:100;
+      background: rgba(26,10,46,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem; height: 62px;
+    }
+    .nav-logo { font-weight:800; font-size:1rem; color:var(--accent); letter-spacing:.06em; }
+    .nav-links { display:flex; gap:1.4rem; list-style:none; }
+    .nav-links a {
+      color:var(--text); text-decoration:none; font-size:.82rem;
+      opacity:.75; transition:opacity .2s, color .2s;
+    }
+    .nav-links a:hover { opacity:1; color:var(--accent); }
+
+    /* ── WRAPPERS ── */
+    .wrap { max-width:1080px; margin:0 auto; padding:0 1.5rem; }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center;
+      padding: 9rem 1.5rem 5rem;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%,
+                  rgba(123,47,190,.35) 0%, transparent 70%);
+      position:relative; overflow:hidden;
+    }
+    #inicio::after {
+      content:'';
+      position:absolute; inset:0; pointer-events:none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%237B2FBE' fill-opacity='.07'/%3E%3C/svg%3E");
+    }
+
+    .hero-pill {
+      display:inline-block;
+      background:rgba(255,107,157,.12);
+      border:1px solid rgba(255,107,157,.35);
+      color:var(--accent);
+      padding:.35rem 1.1rem;
+      border-radius:100px;
+      font-size:.75rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:1.75rem;
+    }
+    h1.hero-title {
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-weight:900; line-height:1.05;
+      background: linear-gradient(130deg, var(--text) 30%, var(--accent));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:1rem;
+    }
+    .hero-sub {
+      font-size:1.15rem; opacity:.65;
+      max-width:560px; margin:0 auto 2.5rem;
+    }
+    .hero-meta {
+      display:flex; flex-wrap:wrap; gap:1rem;
+      justify-content:center; font-size:.82rem; opacity:.55;
+    }
+    .bounce {
+      margin-top:3.5rem; display:flex; flex-direction:column;
+      align-items:center; gap:.4rem; opacity:.4; font-size:.75rem;
+      animation: bounceY 2s ease-in-out infinite;
+    }
+    @keyframes bounceY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6rem 1.5rem; }
+    .section-inner { max-width:1080px; margin:0 auto; }
+
+    .label {
+      font-size:.72rem; font-weight:700;
+      letter-spacing:.15em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:.6rem;
+    }
+    h2.stitle {
+      font-size: clamp(1.9rem,4vw,2.9rem);
+      font-weight:800; line-height:1.15; margin-bottom:.9rem;
+    }
+    .divider {
+      width:56px; height:3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius:100px; margin-bottom:2.5rem;
+    }
+    p.body-text { font-size:1.02rem; opacity:.85; max-width:820px; margin-bottom:1.25rem; }
+    em.hi { color:var(--accent); font-style:normal; font-weight:600; }
+    em.hi2 { color:#a78bfa; font-style:normal; font-weight:600; }
+
+    /* ── GRIDS ── */
+    .g2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.4rem; }
+    .g3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; }
+    .g4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; }
+
+    /* ── CARD ── */
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px; padding:1.75rem;
+      transition:transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform:translateY(-5px);
+      border-color:var(--primary);
+      box-shadow:0 18px 45px rgba(123,47,190,.2);
+    }
+    .card h4 { color:var(--accent); margin-bottom:.75rem; font-size:1rem; }
+    .card ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; font-size:.9rem; opacity:.85; }
+    .card ul li::before { content:'✦ '; color:var(--primary); }
+
+    /* ── MOLECULE CARDS ── */
+    .mol-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px; overflow:hidden;
+      transition:transform .3s, border-color .3s, box-shadow .3s;
+      display:flex; flex-direction:column;
+    }
+    .mol-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--accent);
+      box-shadow:0 22px 55px rgba(255,107,157,.15);
+    }
+    .mol-img {
+      background:#ffffff;
+      padding:1.75rem;
+      display:flex; align-items:center; justify-content:center;
+      min-height:190px; gap:1rem; flex-wrap:wrap;
+    }
+    .mol-img img { max-height:140px; max-width:100%; object-fit:contain; }
+    .mol-body { padding:1.6rem; flex:1; }
+    .mol-badge {
+      display:inline-block;
+      background:rgba(123,47,190,.2);
+      border:1px solid rgba(123,47,190,.4);
+      color:#a78bfa;
+      padding:.2rem .7rem; border-radius:100px;
+      font-size:.7rem; font-weight:700;
+      margin-bottom:.75rem;
+    }
+    .mol-badge.pink {
+      background:rgba(255,107,157,.15);
+      border-color:rgba(255,107,157,.4);
+      color:var(--accent);
+    }
+    .mol-name { font-size:1.15rem; font-weight:800; margin-bottom:.2rem; }
+    .mol-formula { font-size:.82rem; color:var(--accent); font-family:monospace; margin-bottom:1rem; }
+    .prop { display:flex; gap:.6rem; font-size:.875rem; margin-bottom:.65rem; opacity:.87; }
+    .prop-k { flex-shrink:0; font-weight:700; color:#a78bfa; min-width:115px; }
+
+    /* ── PATHWAY ── */
+    .pathway-wrap {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:2.5rem 2rem;
+      margin-top:2rem;
+    }
+    .pathway {
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .pnode {
+      background:rgba(123,47,190,.18);
+      border:2px solid var(--primary);
+      border-radius:14px;
+      padding:.9rem 2.2rem; text-align:center;
+      min-width:260px;
+    }
+    .pnode.end {
+      border-color:var(--accent);
+      background:rgba(255,107,157,.14);
+    }
+    .pnode-title { font-weight:800; font-size:.98rem; }
+    .pnode-sub { font-size:.77rem; color:var(--accent); font-family:monospace; margin-top:.2rem; }
+    .parrow {
+      display:flex; flex-direction:column; align-items:center;
+      position:relative; padding:.3rem 0;
+    }
+    .parrow-line { width:2px; height:52px; background:linear-gradient(180deg,var(--primary),var(--accent)); }
+    .parrow-tip {
+      width:0; height:0;
+      border-left:6px solid transparent;
+      border-right:6px solid transparent;
+      border-top:9px solid var(--accent);
+    }
+    .parrow-label {
+      position:absolute; left:calc(50% + 22px); top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,107,157,.1);
+      border:1px solid rgba(255,107,157,.3);
+      border-radius:8px; padding:.25rem .7rem;
+      font-size:.72rem; color:var(--accent);
+      white-space:nowrap; font-style:italic;
+    }
+    .parrow-cofactor {
+      position:absolute; right:calc(50% + 22px); top:50%;
+      transform:translateY(-50%);
+      background:rgba(123,47,190,.12);
+      border:1px solid rgba(123,47,190,.35);
+      border-radius:8px; padding:.25rem .7rem;
+      font-size:.72rem; color:#a78bfa;
+      white-space:nowrap;
+    }
+    .eq-box {
+      background:rgba(123,47,190,.12);
+      border:1px solid rgba(123,47,190,.3);
+      border-radius:14px;
+      padding:1.2rem 2rem; text-align:center;
+      font-size:1.05rem; font-family:monospace;
+      margin-top:2.2rem;
+    }
+    .eq-box .hl { color:var(--accent); font-weight:700; }
+
+    /* ── INFO BOXES ── */
+    .ibox {
+      background:rgba(123,47,190,.1);
+      border-left:4px solid var(--primary);
+      border-radius:0 12px 12px 0;
+      padding:1.1rem 1.4rem; margin-bottom:1rem;
+      font-size:.93rem; opacity:.9;
+    }
+    .ibox.pink {
+      border-color:var(--accent);
+      background:rgba(255,107,157,.08);
+    }
+
+    /* ── TABS ── */
+    .tab-btns { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .tbtn {
+      background:var(--card);
+      border:1px solid var(--border);
+      color:var(--text); padding:.45rem 1.2rem;
+      border-radius:100px; cursor:pointer; font-size:.82rem;
+      transition:all .2s;
+    }
+    .tbtn.active, .tbtn:hover { background:var(--primary); border-color:var(--primary); }
+    .tcontent { display:none; }
+    .tcontent.active { display:block; }
+
+    /* ── FACTOR CARD ── */
+    .fcard {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px; padding:1.5rem;
+      transition:transform .25s, border-color .25s;
+    }
+    .fcard:hover { transform:translateY(-4px); border-color:var(--accent); }
+    .fcard .icon { font-size:2rem; margin-bottom:.7rem; }
+    .fcard .ftitle { color:var(--accent); font-weight:700; margin-bottom:.4rem; }
+    .fcard .ftext { font-size:.875rem; opacity:.8; line-height:1.65; }
+
+    /* ── TEAM ── */
+    .tcard {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px; padding:2rem 1.5rem;
+      text-align:center;
+      transition:transform .25s;
+    }
+    .tcard:hover { transform:translateY(-4px); }
+    .avatar {
+      width:62px; height:62px;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; font-weight:800;
+      margin:0 auto 1rem;
+    }
+    .tname { font-weight:700; font-size:.98rem; margin-bottom:.25rem; }
+    .trole { font-size:.78rem; opacity:.55; }
+
+    /* ── REFS ── */
+    .ref { font-size:.83rem; opacity:.72; padding-left:1.3rem; position:relative; margin-bottom:.7rem; line-height:1.6; }
+    .ref::before { content:'›'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+
+    /* ── FOOTER ── */
+    footer {
+      background:rgba(0,0,0,.3);
+      border-top:1px solid var(--border);
+      text-align:center; padding:2rem;
+      font-size:.78rem; opacity:.45;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--primary); border-radius:3px; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:680px) {
+      .nav-links { display:none; }
+      .parrow-label, .parrow-cofactor { display:none; }
+      .pnode { min-width:200px; padding:.8rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav>
+  <div class="nav-logo">🦠 Probióticos</div>
+  <ul class="nav-links">
+    <li><a href="#generalidades">Generalidades</a></li>
+    <li><a href="#moleculas">Moléculas</a></li>
+    <li><a href="#metabolismo">Metabolismo</a></li>
+    <li><a href="#factores">Factores</a></li>
+    <li><a href="#mejoras">Mejoras</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section id="inicio">
+  <div class="hero-pill">Proyecto de Aula · Bioquímica 2026-1</div>
+  <h1 class="hero-title">Probióticos</h1>
+  <p class="hero-sub">Procesos biotecnológicos para la obtención de microorganismos vivos beneficiosos para la salud intestinal</p>
+  <div class="hero-meta">
+    <span>🏛 Universidad EIA</span>
+    <span>🧬 Ingeniería Biotecnológica</span>
+    <span>📚 Bioquímica — Grupo 1</span>
+  </div>
+  <div class="bounce">
+    <span>Explorar</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ════════════════ GENERALIDADES ════════════════ -->
+<section class="section" id="generalidades">
+  <div class="section-inner">
+    <p class="label">Entrega 1</p>
+    <h2 class="stitle">¿Qué son los Probióticos?</h2>
+    <div class="divider"></div>
+
+    <p class="body-text">
+      Los probióticos son <em class="hi">microorganismos vivos</em> que, al administrarse en cantidades óptimas, proveen beneficios sobre la salud del huésped. Se encuentran de manera natural en alimentos fermentados y se trata principalmente de bacterias y levaduras como <em>Lactobacillus spp.</em> y <em>Bifidobacterium spp.</em>
+    </p>
+    <p class="body-text">
+      Su producción industrial se basa en la <em class="hi">fermentación láctica</em>, en la que las bacterias metabolizan fuentes de carbono como la glucosa, produciendo ácido láctico como metabolito principal. Esto acidifica el medio, inhibe contaminantes y favorece el crecimiento de la cepa deseada.
+    </p>
+
+    <div class="g2" style="margin:2rem 0;">
+      <div class="card">
+        <h4>Características principales</h4>
+        <ul>
+          <li>Sobreviven al pH gástrico ácido y a sales biliares</li>
+          <li>Colonizan el intestino eficazmente</li>
+          <li>Producen compuestos bioactivos</li>
+          <li>Concentración mínima: 10⁶ UFC/g o mL</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Beneficios para la salud</h4>
+        <ul>
+          <li>Equilibran el microbiota intestinal</li>
+          <li>Mejoran la digestión</li>
+          <li>Fortalecen el sistema inmunológico</li>
+          <li>Reducen patógenos por competencia y acidificación</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.25rem;margin-bottom:1.5rem;margin-top:3rem;">Proceso de Obtención Industrial</h3>
+    <div class="g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+          <div style="background:rgba(123,47,190,.2);border:1px solid var(--primary);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;">1</div>
+          <h4 style="margin:0;">Upstream</h4>
+        </div>
+        <p style="font-size:.9rem;opacity:.82;">Selección y caracterización de la cepa, formulación del medio de cultivo y optimización de parámetros: temperatura (~37 °C), pH y velocidad de agitación. Las cepas se cultivan en biorreactores bajo condiciones controladas de anaerobiosis.</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+          <div style="background:rgba(255,107,157,.15);border:1px solid var(--accent);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;color:var(--accent);">2</div>
+          <h4 style="margin:0;color:var(--accent);">Downstream</h4>
+        </div>
+        <p style="font-size:.9rem;opacity:.82;">Cosecha de la biomasa por centrifugación, concentración y conservación mediante <strong>liofilización</strong> o <strong>microencapsulación</strong>. Estas técnicas protegen los microorganismos durante el almacenamiento y garantizan su viabilidad hasta el consumo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ MOLÉCULAS ════════════════ -->
+<section class="section" id="moleculas" style="background:rgba(123,47,190,.04);">
+  <div class="section-inner">
+    <p class="label">Entrega 1 · Análisis Molecular</p>
+    <h2 class="stitle">Moléculas Clave</h2>
+    <div class="divider"></div>
+    <p class="body-text">
+      Se identificaron tres moléculas fundamentales: <em class="hi">dos directamente relacionadas con el proceso biotecnológico</em> de obtención (glucosa y NAD⁺/NADH) y una que corresponde al <em class="hi">componente principal producido</em> (ácido láctico).
+    </p>
+
+    <div class="g3" style="margin-top:2rem;">
+
+      <!-- GLUCOSA -->
+      <div class="mol-card">
+        <div class="mol-img">
+          <img src="Imagenes/Glucosa.png" alt="Estructura de la Glucosa" />
+        </div>
+        <div class="mol-body">
+          <span class="mol-badge">Sustrato inicial</span>
+          <div class="mol-name">Glucosa</div>
+          <div class="mol-formula">C₆H₁₂O₆</div>
+          <div class="prop"><span class="prop-k">Grupos func.</span>1 aldehído (—CHO) · 5 hidroxilos (—OH) en forma lineal</div>
+          <div class="prop"><span class="prop-k">Polaridad</span>Altamente polar — dipolos permanentes por electronegatividad del O en —OH y —CHO</div>
+          <div class="prop"><span class="prop-k">Solubilidad</span>Muy soluble en agua — múltiples puentes de H; principio "semejante disuelve semejante"</div>
+        </div>
+      </div>
+
+      <!-- ÁCIDO LÁCTICO -->
+      <div class="mol-card">
+        <div class="mol-img" style="flex-direction:column;gap:.75rem;">
+          <div style="text-align:center;">
+            <img src="Imagenes/Acido lactico.png" alt="Ácido láctico protonado" />
+            <p style="font-size:.7rem;color:#888;margin-top:.3rem;">Forma protonada</p>
+          </div>
+          <div style="text-align:center;">
+            <img src="Imagenes/Acido lactico desprotonado lactato.png" alt="Lactato" />
+            <p style="font-size:.7rem;color:#888;margin-top:.3rem;">Lactato (pH fisiológico)</p>
+          </div>
+        </div>
+        <div class="mol-body">
+          <span class="mol-badge pink">Producto principal</span>
+          <div class="mol-name">Ácido Láctico</div>
+          <div class="mol-formula">C₃H₆O₃</div>
+          <div class="prop"><span class="prop-k">Grupos func.</span>1 carboxilo (—COOH) · 1 hidroxilo (—OH) — compuesto bifuncional</div>
+          <div class="prop"><span class="prop-k">Polaridad</span>Muy polar — distribución asimétrica de la densidad electrónica por los átomos de O</div>
+          <div class="prop"><span class="prop-k">Solubilidad</span>Muy soluble — —OH y —COOH actúan como donadores y aceptores de puentes de H</div>
+          <div class="prop"><span class="prop-k">Nota</span>A pH 7.4, pKa=3.86 → se disocia en <strong>lactato</strong> (—COO⁻), facilitando su transporte fuera de la célula</div>
+        </div>
+      </div>
+
+      <!-- NAD+/NADH -->
+      <div class="mol-card">
+        <div class="mol-img" style="flex-direction:column;gap:.75rem;">
+          <div style="text-align:center;">
+            <img src="Imagenes/NAD+.png" alt="NAD+" />
+            <p style="font-size:.7rem;color:#888;margin-top:.3rem;">NAD⁺ (forma oxidada)</p>
+          </div>
+          <div style="text-align:center;">
+            <img src="Imagenes/NADH.png" alt="NADH" />
+            <p style="font-size:.7rem;color:#888;margin-top:.3rem;">NADH (forma reducida)</p>
+          </div>
+        </div>
+        <div class="mol-body">
+          <span class="mol-badge">Coenzima redox</span>
+          <div class="mol-name">NAD⁺ / NADH</div>
+          <div class="mol-formula">C₂₁H₂₇N₇O₁₄P₂</div>
+          <div class="prop"><span class="prop-k">Composición</span>Adenina · 2 ribosas · 2 fosfatos · anillo de nicotinamida</div>
+          <div class="prop"><span class="prop-k">Grupos func.</span>Amida · amina · aldehído · alcohol · fosfato</div>
+          <div class="prop"><span class="prop-k">Polaridad</span>Muy polares — NAD⁺ ligeramente más polar (catión en nicotinamida)</div>
+          <div class="prop"><span class="prop-k">Solubilidad</span>Altamente solubles — puentes de H por N, O, H e iones fosfato cargados</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ METABOLISMO ════════════════ -->
+<section class="section" id="metabolismo">
+  <div class="section-inner">
+    <p class="label">Entrega 2 · Vía Metabólica</p>
+    <h2 class="stitle">Fermentación Láctica Homoláctica</h2>
+    <div class="divider"></div>
+
+    <p class="body-text">
+      La producción industrial de probióticos se basa en la <em class="hi">fermentación láctica homoláctica</em>, una ruta metabólica anaerobia en la que la glucosa es transformada casi en su totalidad en ácido láctico. Teóricamente, <strong>1 mol de glucosa produce 2 mol de ácido láctico</strong>.
+    </p>
+    <p class="body-text">
+      Esta vía ocurre en dos etapas sucesivas interdependientes, donde el par <em class="hi2">NAD⁺/NADH</em> actúa como conector metabólico esencial entre ambas.
+    </p>
+
+    <div class="pathway-wrap">
+      <h3 style="text-align:center;margin-bottom:2.2rem;opacity:.9;font-size:1.1rem;">Esquema de la Vía Metabólica</h3>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+
+        <!-- PATHWAY -->
+        <div class="pathway">
+
+          <div class="pnode">
+            <div class="pnode-title">Glucosa</div>
+            <div class="pnode-sub">C₆H₁₂O₆</div>
+          </div>
+
+          <div class="parrow">
+            <div class="parrow-line"></div>
+            <div class="parrow-tip"></div>
+            <div class="parrow-label">Hexocinasa</div>
+            <div class="parrow-cofactor">ATP → ADP</div>
+          </div>
+
+          <div class="pnode">
+            <div class="pnode-title">Glucosa-6-fosfato</div>
+          </div>
+
+          <div class="parrow">
+            <div class="parrow-line"></div>
+            <div class="parrow-tip"></div>
+            <div class="parrow-label">Isomerasas / PFK-1</div>
+            <div class="parrow-cofactor">Glucólisis (EMP)</div>
+          </div>
+
+          <div class="pnode">
+            <div class="pnode-title">2× Gliceraldehído-3-fosfato</div>
+            <div class="pnode-sub">(G3P)</div>
+          </div>
+
+          <div class="parrow">
+            <div class="parrow-line"></div>
+            <div class="parrow-tip"></div>
+            <div class="parrow-label">Oxidación + Fosforilación</div>
+            <div class="parrow-cofactor">NAD⁺ → NADH ⬇</div>
+          </div>
+
+          <div class="pnode">
+            <div class="pnode-title">2× Piruvato</div>
+            <div class="pnode-sub">C₃H₄O₃ · Balance: +2 ATP, +2 NADH</div>
+          </div>
+
+          <div class="parrow">
+            <div class="parrow-line"></div>
+            <div class="parrow-tip"></div>
+            <div class="parrow-label">Lactato deshidrogenasa (LDH)</div>
+            <div class="parrow-cofactor">NADH → NAD⁺ ♻</div>
+          </div>
+
+          <div class="pnode end">
+            <div class="pnode-title">2× Ácido Láctico</div>
+            <div class="pnode-sub">C₃H₆O₃ → Lactato (pH 7.4)</div>
+          </div>
+
+        </div>
+
+        <!-- SIDE NOTES -->
+        <div style="max-width:320px;display:flex;flex-direction:column;gap:1rem;padding-top:1rem;">
+          <div class="ibox">
+            <strong>Etapa 1 — Glucólisis (EMP)</strong><br/>
+            La glucosa se fosforila progresivamente hasta generar 2 piruvatos. Balance neto: <strong>+2 ATP</strong> y <strong>+2 NADH</strong> por mol de glucosa. Requiere NAD⁺ como aceptor de electrones.
+          </div>
+          <div class="ibox pink">
+            <strong>Etapa 2 — Reducción del piruvato</strong><br/>
+            La LDH reduce el piruvato a ácido láctico usando el NADH, regenerando el NAD⁺. Sin esta regeneración, la glucólisis se detendría por agotamiento de aceptores de electrones.
+          </div>
+          <div class="ibox">
+            <strong>Rol del par NAD⁺/NADH</strong><br/>
+            Actúa como transportador de electrones que conecta ambas etapas. El ciclo NAD⁺ ⇌ NADH mantiene el balance redox celular indispensable para la continuidad de la fermentación.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="eq-box">
+        <span class="hl">C₆H₁₂O₆</span> → <span class="hl">2 C₃H₆O₃</span> + <span class="hl">2 ATP</span>
+        <br/>
+        <small style="opacity:.6;font-size:.78rem;">
+          Rendimiento teórico: 1 g ácido láctico / g glucosa &nbsp;·&nbsp; Experimental: 0.74 – 0.99 g/g
+        </small>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FACTORES ════════════════ -->
+<section class="section" id="factores" style="background:rgba(123,47,190,.04);">
+  <div class="section-inner">
+    <p class="label">Entrega 2 · Análisis Crítico</p>
+    <h2 class="stitle">Factores que Afectan el Proceso</h2>
+    <div class="divider"></div>
+    <p class="body-text">
+      Tanto a nivel industrial como fisiológico existen múltiples factores que comprometen la eficiencia de la fermentación láctica y la viabilidad de los probióticos.
+    </p>
+
+    <div class="tab-btns">
+      <button class="tbtn active" onclick="showTab('bio', this)">A nivel del bioproceso</button>
+      <button class="tbtn" onclick="showTab('hue', this)">A nivel fisiológico del huésped</button>
+    </div>
+
+    <div id="tc-bio" class="tcontent active">
+      <div class="g2">
+        <div class="fcard">
+          <div class="icon">🌡️</div>
+          <div class="ftitle">pH y Temperatura</div>
+          <p class="ftext">pH &lt; 4.0 inhibe la LDH y las enzimas glucolíticas. Desviaciones de ±5 °C respecto al óptimo (~37 °C) desnaturalizan las proteínas de la ruta EMP, deteniendo la producción de ácido láctico.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">⛔</div>
+          <div class="ftitle">Inhibición por producto</div>
+          <p class="ftext">Acumulación de ácido láctico (&gt;80 g/L) genera inhibición sobre la LDH y los transportadores de membrana, frenando la regeneración del NAD⁺ e interrumpiendo la glucólisis.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">💨</div>
+          <div class="ftitle">Presencia de O₂</div>
+          <p class="ftext">Incluso mínima presencia de oxígeno activa las NADH oxidasas, que compiten con la LDH por el NADH disponible, desviando el flujo de carbono hacia productos no deseados.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">🍬</div>
+          <div class="ftitle">Disponibilidad de sustrato</div>
+          <p class="ftext">Sin glucosa suficiente, la glucólisis no puede iniciarse. Parte de la fuente de carbono se destina a síntesis de biomasa (0.07–0.22 g/g), reduciendo el rendimiento en ácido láctico.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tc-hue" class="tcontent">
+      <div class="g2">
+        <div class="fcard">
+          <div class="icon">🧪</div>
+          <div class="ftitle">pH gástrico ácido (~2.0)</div>
+          <p class="ftext">Desnaturaliza las enzimas glucolíticas y la LDH antes de que las BAL alcancen el intestino, interrumpiendo directamente la regeneración del par NAD⁺/NADH.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">💊</div>
+          <div class="ftitle">Antibióticos de amplio espectro</div>
+          <p class="ftext">Eliminan indiscriminadamente las bacterias ácido-lácticas (BAL), induciendo desequilibrio del microbiota y anulando la fermentación láctica intestinal.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">😰</div>
+          <div class="ftitle">Estrés crónico</div>
+          <p class="ftext">Eleva el cortisol, altera la motilidad intestinal y modifica el microambiente de forma desfavorable para la colonización bacteriana y su metabolismo fermentativo.</p>
+        </div>
+        <div class="fcard">
+          <div class="icon">🥗</div>
+          <div class="ftitle">Dieta baja en carbohidratos</div>
+          <p class="ftext">Priva a las BAL de glucosa —sustrato inicial de la glucólisis—, deteniendo la producción de ácido láctico y la regeneración de NAD⁺ en el intestino.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ MEJORAS ════════════════ -->
+<section class="section" id="mejoras">
+  <div class="section-inner">
+    <p class="label">Entrega 2 · Optimización</p>
+    <h2 class="stitle">Estrategias de Mejoramiento</h2>
+    <div class="divider"></div>
+    <p class="body-text">
+      Más allá de producir bacterias, estas deben sobrevivir el procesamiento, mantenerse viables durante el almacenamiento y resistir el tracto gastrointestinal. Se han identificado estrategias clave en múltiples frentes.
+    </p>
+
+    <div class="g3" style="margin-top:1.5rem;">
+      <div class="card">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🧫</div>
+        <h4>Optimización del medio MRS</h4>
+        <p style="font-size:.88rem;opacity:.82;line-height:1.65;">La modificación del medio de cultivo con glucosa, extracto de levadura, acetato de sodio, citrato de amonio, fosfatos, MgSO₄, MnSO₄, L-cisteína y Tween 80 logró <strong>9.4× más células viables</strong> frente al medio estándar.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:2rem;margin-bottom:.75rem;">⚗️</div>
+        <h4>Control de pH óptimo</h4>
+        <p style="font-size:.88rem;opacity:.82;line-height:1.65;">Un pH de <strong>4.5</strong> (vs. el usual 5.5–5.7) produce más biomasa, mejor utilización del sustrato, mayor supervivencia tras liofilización y células más cortas y resistentes con mayores conteos viables.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🛡️</div>
+        <h4>Cepas tolerantes al estrés</h4>
+        <p style="font-size:.88rem;opacity:.82;line-height:1.65;">Selección de cepas como <em>Bifidobacterium animalis subsc. lactis</em>. Pre-exposición a estrés leve activa mecanismos de defensa, induciendo proteínas <strong>HSPs</strong> (heat shock proteins) que protegen las enzimas metabólicas.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:2rem;margin-bottom:.75rem;">💊</div>
+        <h4>Encapsulación ionotrópica</h4>
+        <p style="font-size:.88rem;opacity:.82;line-height:1.65;">Cápsulas de <strong>60.4% suero dulce de leche + 39.6% alginato</strong> alcanzan una concentración bacteriana final de 9.20 log₁₀ UFC/mL, mejorando significativamente la resistencia digestiva y evitando la centrifugación de la biomasa.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:2rem;margin-bottom:.75rem;">❄️</div>
+        <h4>Liofilización / Microencapsulación</h4>
+        <p style="font-size:.88rem;opacity:.82;line-height:1.65;">Técnicas de conservación que protegen los microorganismos durante el almacenamiento a largo plazo, garantizando la viabilidad hasta el consumo (≥10⁶ UFC/g o mL según estándares internacionales).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ EQUIPO ════════════════ -->
+<section class="section" id="equipo" style="background:rgba(123,47,190,.04);">
+  <div class="section-inner">
+    <p class="label">Autoras</p>
+    <h2 class="stitle">Equipo de Investigación</h2>
+    <div class="divider"></div>
+
+    <div class="g3">
+      <div class="tcard">
+        <div class="avatar">JC</div>
+        <div class="tname">Julieta Cadavid Franco</div>
+        <div class="trole">Ingeniería Biotecnológica</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">ST</div>
+        <div class="tname">Salomé Tobón Salazar</div>
+        <div class="trole">Ingeniería Biotecnológica</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">MC</div>
+        <div class="tname">María Claudia Ortiz Camacho</div>
+        <div class="trole">Ingeniería Biotecnológica</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;text-align:center;opacity:.5;font-size:.82rem;line-height:2;">
+      <p><strong>Docentes:</strong> Natalia Andrea Agudelo Pérez · Claudia Elena Echeverri Cuartas</p>
+      <p>Universidad EIA · Bioquímica Grupo 1 · 2026-1</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ REFERENCIAS ════════════════ -->
+<section class="section" id="referencias">
+  <div class="section-inner">
+    <p class="label">Bibliografía APA</p>
+    <h2 class="stitle">Referencias</h2>
+    <div class="divider"></div>
+
+    <div style="columns:1;max-width:860px;">
+      <p class="ref">Bintsis, T. (2018). Lactic acid bacteria as starter cultures: An update in their metabolism and genetics. <em>AIMS Microbiology</em>, 4(4), 665–684. https://doi.org/10.3934/microbiol.2018.4.665</p>
+      <p class="ref">Bloemendaal, M., Szopinska-Tokov, J., Belzer, C., et al. (2021). Probiotics-induced changes in gut microbial composition and its effects on cognitive performance after stress. <em>Translational Psychiatry</em>, 11(1), 300. https://doi.org/10.1038/s41398-021-01404-9</p>
+      <p class="ref">Clínica Universidad de Navarra. (2023). <em>Qué es el NADH. Diccionario médico.</em></p>
+      <p class="ref">European Food Information Council (EUFIC). (2025). El papel de las bacterias ácido-lácticas en la fermentación de alimentos. https://www.eufic.org/es/produccion-de-alimentos/articulo/las-bacterias-acido-lacticas-y-su-uso-en-la-alimentacion</p>
+      <p class="ref">FAO/WHO. (2001, 2002). <em>Probióticos en los alimentos. Propiedades saludables y nutricionales y directrices para la evaluación.</em></p>
+      <p class="ref">Feng, T. & Wang, J. (2020). Oxidative stress tolerance and antioxidant capacity of lactic acid bacteria as probiotic: a systematic review. <em>Gut Microbes</em>, 12(1). https://doi.org/10.1080/19490976.2020.1801944</p>
+      <p class="ref">Gueimonde, M. & Sánchez, B. (2012). Enhancing probiotic stability in industrial processes. <em>Microbial Ecology in Health & Disease</em>, 23. https://doi.org/10.3402/mehd.v23i0.18562</p>
+      <p class="ref">Kavitake, D., Kandasamy, S., Devi, P. B., & Shetty, P. H. (2018). Recent developments on encapsulation of lactic acid bacteria as potential starter culture. <em>Food Bioscience</em>, 21, 34–44. https://doi.org/10.1016/j.fbio.2017.11.003</p>
+      <p class="ref">Loo, J. S., Oslan, S. N. H., et al. (2025). Comprehensive Review of Strategies for Lactic Acid Bacteria Production. <em>Fermentation</em>, 11(5), 241. https://doi.org/10.3390/fermentation11050241</p>
+      <p class="ref">Mayo Clinic. (2025). <em>Probiotics and prebiotics: What you should know.</em> https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/probiotics/faq-20058065</p>
+      <p class="ref">Othman, M., Ariff, A. B., Rios-Solis, L., & Halim, M. (2017). Extractive fermentation of lactic acid in lactic acid bacteria cultivation. <em>Frontiers in Microbiology</em>, 8. https://doi.org/10.3389/FMICB.2017.02285</p>
+      <p class="ref">Pessione, E. (2012). Lactic acid bacteria contribution to gut microbiota complexity. <em>Frontiers in Cellular and Infection Microbiology</em>, 2, 86. https://doi.org/10.3389/FCIMB.2012.00086</p>
+      <p class="ref">Rojas-Muñoz, Y. V., Santagapita, P. R., & Quintanilla-Carvajal, M. X. (2023). Probiotic Encapsulation: Bead Design Improves Bacterial Performance during In Vitro Digestion. <em>Polymers</em>, 15(21). https://doi.org/10.3390/polym15214296</p>
+      <p class="ref">Shi, Y., Luo, J., Narbad, A., & Chen, Q. (2023). Advances in Lactobacillus Restoration for β-Lactam Antibiotic-Induced Dysbiosis. <em>Microorganisms</em>, 11(1), 179.</p>
+      <p class="ref">Singh, R. P., Shadan, A., & Ma, Y. (2022). Biotechnological Applications of Probiotics: A Multifarious Weapon to Disease and Metabolic Abnormality. <em>Probiotics and Antimicrobial Proteins</em>, 14(6), 1184. https://doi.org/10.1007/s12602-022-09992-8</p>
+      <p class="ref">Stasiak-Różańska, L., et al. (2021). Effect of Simulated Gastrointestinal Tract Conditions on Survivability of Probiotic Bacteria. <em>International Journal of Environmental Research and Public Health</em>, 18(3), 1108.</p>
+      <p class="ref">Tripathi, M. K. & Giri, S. K. (2014). Probiotic functional foods: Survival during processing and storage. <em>Journal of Functional Foods</em>, 9(1), 225–241. https://doi.org/10.1016/j.jff.2014.04.030</p>
+      <p class="ref">Wang, Y., Wu, J., Lv, M., et al. (2021). Metabolism Characteristics of Lactic Acid Bacteria and the Expanding Applications in Food Industry. <em>Frontiers in Bioengineering and Biotechnology</em>, 9, 612285. https://doi.org/10.3389/FBIOE.2021.612285</p>
+      <p class="ref">Yan, S. Q., Shi, Y. Y., Yang, R., Li, R., Hang, F., & Zhang, H. (2025). Boosting Probiotic Biomass of Lactobacillus acidophilus CCFM137 Through pH-Stat Morphological Control and Medium Optimization. <em>Fermentation</em>, 11(10). https://doi.org/10.3390/fermentation11100564</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Proyecto de Aula Bioquímica 2026-1 · Universidad EIA · Ingeniería Biotecnológica · Grupo 1</p>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tcontent').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tc-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
