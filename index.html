@@ -301,8 +301,10 @@
     .trole { font-size:.78rem; opacity:.55; }
 
     /* ── REFS ── */
-    .ref { font-size:.83rem; opacity:.72; padding-left:1.3rem; position:relative; margin-bottom:.7rem; line-height:1.6; }
+    .ref { font-size:.83rem; opacity:.72; padding-left:1.3rem; position:relative; margin-bottom:.85rem; line-height:1.6; }
     .ref::before { content:'›'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+    .ref a { color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(255,107,157,.3); transition:border-color .2s, opacity .2s; }
+    .ref a:hover { border-color:var(--accent); opacity:1; }
 
     /* ── FOOTER ── */
     footer {
@@ -353,7 +355,6 @@
 
   <!-- AUTORAS + DOCENTES -->
   <div style="margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;">
-    <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.45;font-weight:700;">Por</p>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem .9rem;">
       <span style="font-size:.95rem;font-weight:600;color:var(--text);opacity:.85;">Julieta Cadavid Franco</span>
       <span style="opacity:.3;font-size:.95rem;">·</span>
@@ -737,26 +738,28 @@
     <h2 class="stitle">Referencias</h2>
     <div class="divider"></div>
 
-    <div style="columns:1;max-width:860px;">
-      <p class="ref">Bintsis, T. (2018). Lactic acid bacteria as starter cultures: An update in their metabolism and genetics. <em>AIMS Microbiology</em>, 4(4), 665–684. https://doi.org/10.3934/microbiol.2018.4.665</p>
-      <p class="ref">Bloemendaal, M., Szopinska-Tokov, J., Belzer, C., et al. (2021). Probiotics-induced changes in gut microbial composition and its effects on cognitive performance after stress. <em>Translational Psychiatry</em>, 11(1), 300. https://doi.org/10.1038/s41398-021-01404-9</p>
+    <div style="max-width:860px;">
+      <p class="ref">Bintsis, T. (2018). Lactic acid bacteria as starter cultures: An update in their metabolism and genetics. <em>AIMS Microbiology</em>, 4(4), 665–684. <a href="https://doi.org/10.3934/microbiol.2018.4.665" target="_blank">https://doi.org/10.3934/microbiol.2018.4.665</a></p>
+      <p class="ref">Bloemendaal, M., Szopinska-Tokov, J., Belzer, C., et al. (2021). Probiotics-induced changes in gut microbial composition and its effects on cognitive performance after stress. <em>Translational Psychiatry</em>, 11(1), 300. <a href="https://doi.org/10.1038/s41398-021-01404-9" target="_blank">https://doi.org/10.1038/s41398-021-01404-9</a></p>
       <p class="ref">Clínica Universidad de Navarra. (2023). <em>Qué es el NADH. Diccionario médico.</em></p>
-      <p class="ref">European Food Information Council (EUFIC). (2025). El papel de las bacterias ácido-lácticas en la fermentación de alimentos. https://www.eufic.org/es/produccion-de-alimentos/articulo/las-bacterias-acido-lacticas-y-su-uso-en-la-alimentacion</p>
-      <p class="ref">FAO/WHO. (2001, 2002). <em>Probióticos en los alimentos. Propiedades saludables y nutricionales y directrices para la evaluación.</em></p>
-      <p class="ref">Feng, T. & Wang, J. (2020). Oxidative stress tolerance and antioxidant capacity of lactic acid bacteria as probiotic: a systematic review. <em>Gut Microbes</em>, 12(1). https://doi.org/10.1080/19490976.2020.1801944</p>
-      <p class="ref">Gueimonde, M. & Sánchez, B. (2012). Enhancing probiotic stability in industrial processes. <em>Microbial Ecology in Health & Disease</em>, 23. https://doi.org/10.3402/mehd.v23i0.18562</p>
-      <p class="ref">Kavitake, D., Kandasamy, S., Devi, P. B., & Shetty, P. H. (2018). Recent developments on encapsulation of lactic acid bacteria as potential starter culture. <em>Food Bioscience</em>, 21, 34–44. https://doi.org/10.1016/j.fbio.2017.11.003</p>
-      <p class="ref">Loo, J. S., Oslan, S. N. H., et al. (2025). Comprehensive Review of Strategies for Lactic Acid Bacteria Production. <em>Fermentation</em>, 11(5), 241. https://doi.org/10.3390/fermentation11050241</p>
-      <p class="ref">Mayo Clinic. (2025). <em>Probiotics and prebiotics: What you should know.</em> https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/probiotics/faq-20058065</p>
-      <p class="ref">Othman, M., Ariff, A. B., Rios-Solis, L., & Halim, M. (2017). Extractive fermentation of lactic acid in lactic acid bacteria cultivation. <em>Frontiers in Microbiology</em>, 8. https://doi.org/10.3389/FMICB.2017.02285</p>
-      <p class="ref">Pessione, E. (2012). Lactic acid bacteria contribution to gut microbiota complexity. <em>Frontiers in Cellular and Infection Microbiology</em>, 2, 86. https://doi.org/10.3389/FCIMB.2012.00086</p>
-      <p class="ref">Rojas-Muñoz, Y. V., Santagapita, P. R., & Quintanilla-Carvajal, M. X. (2023). Probiotic Encapsulation: Bead Design Improves Bacterial Performance during In Vitro Digestion. <em>Polymers</em>, 15(21). https://doi.org/10.3390/polym15214296</p>
-      <p class="ref">Shi, Y., Luo, J., Narbad, A., & Chen, Q. (2023). Advances in Lactobacillus Restoration for β-Lactam Antibiotic-Induced Dysbiosis. <em>Microorganisms</em>, 11(1), 179.</p>
-      <p class="ref">Singh, R. P., Shadan, A., & Ma, Y. (2022). Biotechnological Applications of Probiotics: A Multifarious Weapon to Disease and Metabolic Abnormality. <em>Probiotics and Antimicrobial Proteins</em>, 14(6), 1184. https://doi.org/10.1007/s12602-022-09992-8</p>
-      <p class="ref">Stasiak-Różańska, L., et al. (2021). Effect of Simulated Gastrointestinal Tract Conditions on Survivability of Probiotic Bacteria. <em>International Journal of Environmental Research and Public Health</em>, 18(3), 1108.</p>
-      <p class="ref">Tripathi, M. K. & Giri, S. K. (2014). Probiotic functional foods: Survival during processing and storage. <em>Journal of Functional Foods</em>, 9(1), 225–241. https://doi.org/10.1016/j.jff.2014.04.030</p>
-      <p class="ref">Wang, Y., Wu, J., Lv, M., et al. (2021). Metabolism Characteristics of Lactic Acid Bacteria and the Expanding Applications in Food Industry. <em>Frontiers in Bioengineering and Biotechnology</em>, 9, 612285. https://doi.org/10.3389/FBIOE.2021.612285</p>
-      <p class="ref">Yan, S. Q., Shi, Y. Y., Yang, R., Li, R., Hang, F., & Zhang, H. (2025). Boosting Probiotic Biomass of Lactobacillus acidophilus CCFM137 Through pH-Stat Morphological Control and Medium Optimization. <em>Fermentation</em>, 11(10). https://doi.org/10.3390/fermentation11100564</p>
+      <p class="ref">European Food Information Council (EUFIC). (2025). El papel de las bacterias ácido-lácticas en la fermentación de alimentos. <a href="https://www.eufic.org/es/produccion-de-alimentos/articulo/las-bacterias-acido-lacticas-y-su-uso-en-la-alimentacion" target="_blank">https://www.eufic.org/es/...</a></p>
+      <p class="ref">Food and Agriculture Organization of the United Nations – World Health Organization. (2001, 2002). <em>Probióticos en los alimentos. Propiedades saludables y nutricionales y directrices para la evaluación.</em> <a href="https://openknowledge.fao.org/server/api/core/bitstreams/104057a5-beeb-407c-a6f9-1ffc3859f18a/content" target="_blank">https://openknowledge.fao.org/...</a></p>
+      <p class="ref">Feng, T. & Wang, J. (2020). Oxidative stress tolerance and antioxidant capacity of lactic acid bacteria as probiotic: a systematic review. <em>Gut Microbes</em>, 12(1). <a href="https://doi.org/10.1080/19490976.2020.1801944" target="_blank">https://doi.org/10.1080/19490976.2020.1801944</a></p>
+      <p class="ref">Gueimonde, M. & Sánchez, B. (2012). Enhancing probiotic stability in industrial processes. <em>Microbial Ecology in Health & Disease</em>, 23. <a href="https://doi.org/10.3402/mehd.v23i0.18562" target="_blank">https://doi.org/10.3402/mehd.v23i0.18562</a></p>
+      <p class="ref">John D. Roberts & Marjorie C. Caserio. (s.f.). <em>La estructura y propiedades de la D-glucosa.</em> LibreTexts Español. <a href="https://espanol.libretexts.org/Bookshelves/Quimica/Qu%C3%ADmica_Org%C3%A1nica/Libro%3A_Principios_B%C3%A1sicos_de_Qu%C3%ADmica_Org%C3%A1nica_(Roberts_y_Caserio)/20%3A_Carbohidratos/20.03%3A_La_estructura_y_propiedades_de_la_D-glucosa" target="_blank">https://espanol.libretexts.org/...</a></p>
+      <p class="ref">Kavitake, D., Kandasamy, S., Devi, P. B., & Shetty, P. H. (2018). Recent developments on encapsulation of lactic acid bacteria as potential starter culture in fermented foods. <em>Food Bioscience</em>, 21, 34–44. <a href="https://doi.org/10.1016/j.fbio.2017.11.003" target="_blank">https://doi.org/10.1016/j.fbio.2017.11.003</a></p>
+      <p class="ref">Loo, J. S., Oslan, S. N. H., Mokshin, N. A. S., Othman, R., Amin, Z., Dejtisakdi, W., Prihanto, A. A., & Tan, J. S. (2025). Comprehensive Review of Strategies for Lactic Acid Bacteria Production and Metabolite Enhancement in Probiotic Cultures. <em>Fermentation</em>, 11(5), 241. <a href="https://doi.org/10.3390/fermentation11050241" target="_blank">https://doi.org/10.3390/fermentation11050241</a></p>
+      <p class="ref">Martinez Alvaro. (s.f.). <em>Glucosa.</em> SEBBM. <a href="https://sebbm.es/moleculas-de-la-vida/glucosa/" target="_blank">https://sebbm.es/moleculas-de-la-vida/glucosa/</a></p>
+      <p class="ref">Mayo Clinic. (2025). <em>Probiotics and prebiotics: What you should know.</em> <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/probiotics/faq-20058065" target="_blank">https://www.mayoclinic.org/...</a></p>
+      <p class="ref">Othman, M., Ariff, A. B., Rios-Solis, L., & Halim, M. (2017). Extractive fermentation of lactic acid in lactic acid bacteria cultivation: A review. <em>Frontiers in Microbiology</em>, 8. <a href="https://doi.org/10.3389/FMICB.2017.02285" target="_blank">https://doi.org/10.3389/FMICB.2017.02285</a></p>
+      <p class="ref">Pessione, E. (2012). Lactic acid bacteria contribution to gut microbiota complexity: lights and shadows. <em>Frontiers in Cellular and Infection Microbiology</em>, 2, 86. <a href="https://doi.org/10.3389/FCIMB.2012.00086" target="_blank">https://doi.org/10.3389/FCIMB.2012.00086</a></p>
+      <p class="ref">Rojas-Muñoz, Y. V., Santagapita, P. R., & Quintanilla-Carvajal, M. X. (2023). Probiotic Encapsulation: Bead Design Improves Bacterial Performance during In Vitro Digestion. <em>Polymers</em>, 15(21). <a href="https://doi.org/10.3390/polym15214296" target="_blank">https://doi.org/10.3390/polym15214296</a></p>
+      <p class="ref">Shi, Y., Luo, J., Narbad, A., & Chen, Q. (2023). Advances in Lactobacillus Restoration for β-Lactam Antibiotic-Induced Dysbiosis. <em>Microorganisms</em>, 11(1), 179. <a href="https://doi.org/10.3390/MICROORGANISMS11010179" target="_blank">https://doi.org/10.3390/MICROORGANISMS11010179</a></p>
+      <p class="ref">Singh, R. P., Shadan, A., & Ma, Y. (2022). Biotechnological Applications of Probiotics: A Multifarious Weapon to Disease and Metabolic Abnormality. <em>Probiotics and Antimicrobial Proteins</em>, 14(6), 1184. <a href="https://doi.org/10.1007/s12602-022-09992-8" target="_blank">https://doi.org/10.1007/s12602-022-09992-8</a></p>
+      <p class="ref">Stasiak-Różańska, L., Berthold-Pluta, A., Pluta, A. S., Dasiewicz, K., & Garbowska, M. (2021). Effect of Simulated Gastrointestinal Tract Conditions on Survivability of Probiotic Bacteria Present in Commercial Preparations. <em>International Journal of Environmental Research and Public Health</em>, 18(3), 1108. <a href="https://doi.org/10.3390/IJERPH18031108" target="_blank">https://doi.org/10.3390/IJERPH18031108</a></p>
+      <p class="ref">Tripathi, M. K. & Giri, S. K. (2014). Probiotic functional foods: Survival of probiotics during processing and storage. <em>Journal of Functional Foods</em>, 9(1), 225–241. <a href="https://doi.org/10.1016/j.jff.2014.04.030" target="_blank">https://doi.org/10.1016/j.jff.2014.04.030</a></p>
+      <p class="ref">Wang, Y., Wu, J., Lv, M., Shao, Z., Hungwe, M., Wang, J., Bai, X., Xie, J., Wang, Y., & Geng, W. (2021). Metabolism Characteristics of Lactic Acid Bacteria and the Expanding Applications in Food Industry. <em>Frontiers in Bioengineering and Biotechnology</em>, 9, 612285. <a href="https://doi.org/10.3389/FBIOE.2021.612285" target="_blank">https://doi.org/10.3389/FBIOE.2021.612285</a></p>
+      <p class="ref">Yan, S. Q., Shi, Y. Y., Yang, R., Li, R., Hang, F., & Zhang, H. (2025). Boosting Probiotic Biomass of Lactobacillus acidophilus CCFM137 Through pH-Stat Morphological Control and Medium Optimization. <em>Fermentation</em>, 11(10). <a href="https://doi.org/10.3390/fermentation11100564" target="_blank">https://doi.org/10.3390/fermentation11100564</a></p>
     </div>
   </div>
 </section>
